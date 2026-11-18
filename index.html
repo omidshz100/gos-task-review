@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOS build review · 6–17 Nov 2026</title>
+<style>
+:root { --ink:#102331; --muted:#5c6e7c; --line:#d5e0e6; --bg:#f3f7f9; --card:#fff; --brand:#005c86; }
+* { box-sizing:border-box; }
+body { margin:0; font:16px/1.55 "Iowan Old Style", Palatino, Georgia, serif; color:var(--ink); background:var(--bg); }
+header.top { background:#fff; border-bottom:1px solid var(--line); padding:28px 20px 20px; }
+.wrap { max-width:820px; margin:0 auto; }
+h1 { font-size:32px; line-height:1.15; margin:0 0 8px; letter-spacing:-.02em; }
+.lede { color:var(--muted); margin:0; max-width:66ch; }
+.bar { position:sticky; top:0; z-index:2; background:rgba(243,247,249,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+.bar .wrap { display:flex; gap:16px; align-items:center; justify-content:space-between; padding:10px 0; flex-wrap:wrap; }
+.who { display:flex; gap:8px; align-items:center; font:15px/1.2 ui-sans-serif, system-ui, sans-serif; }
+.who input { font:inherit; border:1px solid var(--line); border-radius:8px; padding:8px 10px; min-width:220px; }
+.progress { font:14px/1.2 ui-sans-serif, system-ui, sans-serif; color:var(--muted); }
+.progress b { color:var(--ink); }
+main { padding:22px 20px 80px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 16px; margin:0 0 16px; }
+.kicker { display:flex; gap:8px; align-items:center; font:12px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing:.04em; text-transform:uppercase; }
+.num { color:var(--muted); }
+.label { color:#fff; background:var(--c); border-radius:999px; padding:4px 8px; }
+.state { color:#1d6b3a; background:#e5f6eb; border-radius:999px; padding:4px 8px; }
+h2 { font-size:24px; margin:10px 0 4px; letter-spacing:-.02em; }
+.when { margin:0 0 12px; color:var(--muted); font:14px/1.4 ui-sans-serif, system-ui, sans-serif; }
+.prose h3 { font:600 13px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing:.06em; text-transform:uppercase; color:var(--brand); margin:14px 0 6px; }
+.prose p { margin:0 0 8px; }
+.review { border:0; margin:14px 0 0; padding:12px 0 0; border-top:1px solid var(--line); }
+.review legend { font:600 13px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); padding:0; }
+.choices { display:flex; gap:16px; margin:8px 0; font:15px/1.2 ui-sans-serif, system-ui, sans-serif; }
+textarea { width:100%; font:15px/1.45 ui-sans-serif, system-ui, sans-serif; border:1px solid var(--line); border-radius:10px; padding:10px; }
+.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+button { font:600 14px/1 ui-sans-serif, system-ui, sans-serif; border-radius:999px; border:1px solid var(--brand); background:var(--brand); color:#fff; padding:10px 14px; cursor:pointer; }
+button.ghost { background:#fff; color:var(--brand); }
+.card.approved { box-shadow:inset 4px 0 0 #1d6b3a; }
+.card.changes { box-shadow:inset 4px 0 0 #a15c07; }
+footer.noteblock { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 22px; }
+footer.noteblock h2 { font-size:22px; }
+@media print {
+  .bar, .review, .actions, footer.noteblock { display:none !important; }
+  body { background:#fff; }
+  .card { break-inside:avoid; border:0; border-top:1px solid #ccc; border-radius:0; }
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>GOS · build review</h1>
+  <p class="lede">Twenty-one tasks for the data assistant, from the kickoff on Friday 6 November 2026 to the handover on Tuesday 17 November 2026. Saturday and Sunday are empty. Please read each task and mark it approved, or write what should change. Your marks stay in this browser. Download the review file at the bottom and send that file back.</p>
+</div></header>
+<div class="bar"><div class="wrap">
+  <label class="who">Your name <input id="reviewer" type="text" placeholder="Name" autocomplete="name"></label>
+  <div class="progress" id="progress">0 of 21 reviewed</div>
+</div></div>
+<main><div class="wrap">
+
+<article class="card" id="task-20" data-id="20">
+  <header>
+    <div class="kicker"><span class="num">01</span><span class="label" style="--c:#005c86">Foundation</span><span class="state">Done</span></div>
+    <h2>Kickoff meeting with the boss</h2>
+    <p class="when">Fri 6 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Agree what the platform is before any code is written. The boss and the builder needed one shared scope: who uses it, what they can ask, and what the model is forbidden to do.</p>
+<h3>Work</h3>
+<p>On 6 November we met and fixed the rules. Area managers ask about sales, pharmacies, calls, visits and targets. The model never writes SQL and never does the maths. Every number comes from a verified query. The first version runs on demo data. The real database comes later, read-only, on Aruba. Delivery to Omid, for deployment and the model, was set for 17 November.</p>
+<h3>Result</h3>
+<p>The scope was agreed. Build started on the next working day, Monday 9 November. Nothing in the later tasks changed these rules.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d20" value="approved"> Approve</label>
+      <label><input type="radio" name="d20" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-1" data-id="1">
+  <header>
+    <div class="kicker"><span class="num">02</span><span class="label" style="--c:#005c86">Foundation</span><span class="state">Done</span></div>
+    <h2>Project skeleton and settings</h2>
+    <p class="when">Mon 9 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Have a plain PHP application that runs by copying a folder. No framework, no build step, and one file for every setting.</p>
+<h3>Work</h3>
+<p>Created the folders lib, api, assets, data, storage, tests and tools. config.php is the only file that holds branding, the database, the model, the users and the limits. autoload.php loads the classes. .htaccess turns directory listing off and refuses to serve config.php, the database, SQL dumps and the certificate file.</p>
+<h3>Result</h3>
+<p>index.php opens and reads its settings from config.php. A direct request for the config file or the database file is denied. The rest of the work could be added without a new toolchain.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d1" value="approved"> Approve</label>
+      <label><input type="radio" name="d1" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-2" data-id="2">
+  <header>
+    <div class="kicker"><span class="num">03</span><span class="label" style="--c:#1e92a8">Data</span><span class="state">Done</span></div>
+    <h2>Read-only SQLite and MySQL connection</h2>
+    <p class="when">Mon 9 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>One data layer that the demo can use today and the real server can use later, and that can never write.</p>
+<h3>Work</h3>
+<p>Db.php speaks SQLite and MySQL through prepared statements. The SQLite file is opened read-only. On MySQL the session is set to TRANSACTION READ ONLY. The few functions that differ between the two engines, such as month and full name, live in this class so each query is written once.</p>
+<h3>Result</h3>
+<p>A table in the demo file can be counted. A write on the same connection is rejected. Switching the driver in config.php does not require a second copy of the queries.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d2" value="approved"> Approve</label>
+      <label><input type="radio" name="d2" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-3" data-id="3">
+  <header>
+    <div class="kicker"><span class="num">04</span><span class="label" style="--c:#005c86">Foundation</span><span class="state">Done</span></div>
+    <h2>Login, session and CSRF</h2>
+    <p class="when">Mon 9 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Two kinds of login, with a session that another site cannot reuse and a token on every request that changes data.</p>
+<h3>Work</h3>
+<p>login.php, logout.php and bootstrap.php start a session named gos_session. The cookie is HttpOnly and SameSite=Lax, and it is marked Secure only when the site itself is on HTTPS. Every changing request must send the CSRF token. admin sees the whole company. roberto is limited to capo_area_id 1. Passwords are stored as hashes, not as text.</p>
+<h3>Result</h3>
+<p>Both demo accounts can log in and log out. An API call without the CSRF token is rejected. A zone manager&#x27;s later queries are tied to the id stored in this session.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d3" value="approved"> Approve</label>
+      <label><input type="radio" name="d3" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-4" data-id="4">
+  <header>
+    <div class="kicker"><span class="num">05</span><span class="label" style="--c:#1e92a8">Data</span><span class="state">Done</span></div>
+    <h2>Time period calculation</h2>
+    <p class="when">Tue 10 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Make &quot;last month&quot;, &quot;last 12 months&quot; and a typed date range mean the same dates in every query.</p>
+<h3>Work</h3>
+<p>Periods.php turns the allowed names, including ultimi_12_mesi and mese_scorso, and an explicit from-to range into a start date and an end date. For the demo, today is fixed at 2026-11-12 because the sample data ends on 2026-11-11. On the real database this value goes back to null so the server date is used.</p>
+<h3>Result</h3>
+<p>Every allowed period returns the expected range. An unknown period returns an error instead of a silent wrong window. The dashboard, the explorer and the agent all call this one class.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d4" value="approved"> Approve</label>
+      <label><input type="radio" name="d4" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-5" data-id="5">
+  <header>
+    <div class="kicker"><span class="num">06</span><span class="label" style="--c:#1e92a8">Data</span><span class="state">Done</span></div>
+    <h2>Demo database</h2>
+    <p class="when">Tue 10 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Let the app answer questions with no import step and no MySQL install on the developer&#x27;s machine.</p>
+<h3>Work</h3>
+<p>Filled data/gos_demo.db with the tables the queries expect: aree, capi_area, venditori, farmacie, prodotti, vendite, chiamate, visite and obiettivi. The sales table holds the bulk of the rows. The file ships inside the project.</p>
+<h3>Result</h3>
+<p>diagnostica shows a row count for every table, and sales are not zero. A new machine can run the site from the SQLite file alone.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d5" value="approved"> Approve</label>
+      <label><input type="radio" name="d5" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-6" data-id="6">
+  <header>
+    <div class="kicker"><span class="num">07</span><span class="label" style="--c:#1e92a8">Data</span><span class="state">Done</span></div>
+    <h2>Thirteen verified queries and zone scope</h2>
+    <p class="when">Tue 10 Nov 2026, 08:00 – Wed 11 Nov 2026, 17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Keep every number inside tested queries, and stop a zone manager from seeing another zone even if the model asks for it.</p>
+<h3>Work</h3>
+<p>lib/Tools.php is the only file that knows the table names. It exposes 13 tools: cerca, scheda_capo_area, vendite_totali, vendite_per_mese, vendite_per_farmacia, classifica_venditori, vendite_per_capo_area, vendite_per_categoria, confronto_periodi, chiamate, visite, venditori_inattivi and obiettivi. The model may only pick a name and arguments. When the logged-in user has a capo_area_id, that limit is applied inside the query. Empty values, unknown arguments and numbers sent as text are tolerated and returned as data, so the model can correct itself.</p>
+<h3>Result</h3>
+<p>All 13 names are in the tool schema. A manager restricted to one zone cannot read another zone. Changing the real database later means changing this file and rerunning the tests.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d6" value="approved"> Approve</label>
+      <label><input type="radio" name="d6" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-7" data-id="7">
+  <header>
+    <div class="kicker"><span class="num">08</span><span class="label" style="--c:#1e92a8">Data</span><span class="state">Done</span></div>
+    <h2>Query tests against known answers</h2>
+    <p class="when">Wed 11 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Prove the 13 queries against figures that were already calculated, with no model in the loop.</p>
+<h3>Work</h3>
+<p>tests/run_tests.php loads the database from config.php, pins today to 2026-11-12, runs the tools and compares each result with the expected value. It can be forced onto SQLite or MySQL from the command line.</p>
+<h3>Result</h3>
+<p>php tests/run_tests.php finishes with no failures on the demo file. This is the check to run again after Tools.php is adapted to the real table names.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d7" value="approved"> Approve</label>
+      <label><input type="radio" name="d7" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-8" data-id="8">
+  <header>
+    <div class="kicker"><span class="num">09</span><span class="label" style="--c:#7c5cbf">Agent</span><span class="state">Done</span></div>
+    <h2>Charts and tables from tool results</h2>
+    <p class="when">Wed 11 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Draw charts and tables from the query result, never from a sentence the model writes.</p>
+<h3>Work</h3>
+<p>Viz.php reads a tool result and builds the chart and the table the page can export. The model is told that the full chart appears under the answer, so it only writes a short summary and the key numbers.</p>
+<h3>Result</h3>
+<p>vendite_per_mese produces a chart panel, and the table shows the same rows as the query. A wrong sentence from the model cannot change the figure on the chart.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d8" value="approved"> Approve</label>
+      <label><input type="radio" name="d8" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-9" data-id="9">
+  <header>
+    <div class="kicker"><span class="num">10</span><span class="label" style="--c:#7c5cbf">Agent</span><span class="state">Done</span></div>
+    <h2>OpenAI-compatible model client</h2>
+    <p class="when">Thu 12 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Talk to Groq, OpenAI, Ollama or any other OpenAI-compatible server by changing three settings, not the agent.</p>
+<h3>Work</h3>
+<p>ModelClient.php posts to /chat/completions. Only base_url, api_key and model differ between providers. A rate-limit response is retried. A network failure or a body that is not a chat message becomes a short error the page can show. The client sends the tool schema. It does not send SQL.</p>
+<h3>Result</h3>
+<p>A short prompt returns an answer from the configured model, or a missing key is reported clearly. Pointing config.php at another server does not require a change in Agent.php.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d9" value="approved"> Approve</label>
+      <label><input type="radio" name="d9" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-10" data-id="10">
+  <header>
+    <div class="kicker"><span class="num">11</span><span class="label" style="--c:#7c5cbf">Agent</span><span class="state">Done</span></div>
+    <h2>Agent loop and JSON tool mode</h2>
+    <p class="when">Thu 12 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Turn one question into a tool call, a verified query, and a short answer, and stop if the model keeps going.</p>
+<h3>Work</h3>
+<p>Agent.php sends the question with a system prompt: answer in the language of the question, every number must come from a tool, start with who, what and the period, format amounts the Italian way, and refuse any request to change data. Native tool calling is the default. tool_mode set to json is the path for a model that cannot call tools. If the provider rejects a malformed tool call, the loop tells the model and tries once more. Steps are capped.</p>
+<h3>Result</h3>
+<p>A sales question calls at least one tool. The answer does not contain a number that is not in the tool result. A question outside the data is refused and two example questions are offered.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d10" value="approved"> Approve</label>
+      <label><input type="radio" name="d10" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-11" data-id="11">
+  <header>
+    <div class="kicker"><span class="num">12</span><span class="label" style="--c:#7c5cbf">Agent</span><span class="state">Done</span></div>
+    <h2>Chat endpoint and conversation history</h2>
+    <p class="when">Thu 12 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Let the page ask a question without freezing the user&#x27;s other tabs, and remember the recent conversation.</p>
+<h3>Work</h3>
+<p>api/chat.php accepts only POST. It checks the login and the CSRF token, rejects an empty or oversized question, and allows 20 questions a minute. The session lock is released while the model works. The last six exchanges are saved. If a model entry has agent_backend, that external service is called instead of the built-in loop. The response is the answer, the steps, the panels and the elapsed time.</p>
+<h3>Result</h3>
+<p>A valid chat POST returns an answer and its panels. An empty question is rejected. A second tab can still load while the first question is waiting on the model.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d11" value="approved"> Approve</label>
+      <label><input type="radio" name="d11" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-12" data-id="12">
+  <header>
+    <div class="kicker"><span class="num">13</span><span class="label" style="--c:#c47b2b">Interface</span><span class="state">Done</span></div>
+    <h2>Assistant page and question library</h2>
+    <p class="when">Fri 13 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Give an area manager a page where a ready-made question or a typed one returns an answer and a chart.</p>
+<h3>Work</h3>
+<p>index.php has three sections: assistant, dashboard and explore. The suggested questions are different for a company admin and for a zone manager. assets/js/core.js, chat.js and views.js send the question, can stop it, show the server error, and store theme and layout choices in the browser for that user.</p>
+<h3>Result</h3>
+<p>A logged-in user can send a suggested question and see the answer and the chart on the same page. The choices of theme and density stay after a reload.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d12" value="approved"> Approve</label>
+      <label><input type="radio" name="d12" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-13" data-id="13">
+  <header>
+    <div class="kicker"><span class="num">14</span><span class="label" style="--c:#c47b2b">Interface</span><span class="state">Done</span></div>
+    <h2>Dashboard without a model</h2>
+    <p class="when">Fri 13 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Show a fixed set of reports for a chosen period, with the model switched off.</p>
+<h3>Work</h3>
+<p>api/dashboard.php runs the verified tools directly: monthly sales, comparison with the previous year, category, top sellers, calls and inactive sellers. A zone manager also gets targets and pharmacies. A company admin gets the zone ranking instead. The period is parsed by the same Periods class as the agent.</p>
+<h3>Result</h3>
+<p>Changing the period refreshes the cards and the charts and does not call the model. The page still works when no API key is configured.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d13" value="approved"> Approve</label>
+      <label><input type="radio" name="d13" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-14" data-id="14">
+  <header>
+    <div class="kicker"><span class="num">15</span><span class="label" style="--c:#c47b2b">Interface</span><span class="state">Done</span></div>
+    <h2>Data explorer and favourites</h2>
+    <p class="when">Fri 13 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Let someone build a report by choosing a tool, and keep favourite reports in the browser.</p>
+<h3>Work</h3>
+<p>api/report.php accepts one tool or a list of tools and runs them through the same verified path as the dashboard. No model is involved. Favourites are stored in the browser, separately for each username, so they survive a reload on that machine.</p>
+<h3>Result</h3>
+<p>A report can be built from a tool and a period, saved as a favourite, and opened again. Refreshing a favourite does not send the question to the model.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d14" value="approved"> Approve</label>
+      <label><input type="radio" name="d14" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-15" data-id="15">
+  <header>
+    <div class="kicker"><span class="num">16</span><span class="label" style="--c:#c47b2b">Interface</span><span class="state">Done</span></div>
+    <h2>Name lookup and feedback</h2>
+    <p class="when">Mon 16 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Turn a typed name into an id before a query, and let the user mark an answer as useful or not.</p>
+<h3>Work</h3>
+<p>api/lookup.php suggests area managers, salespeople and pharmacies for the search box. api/feedback.php stores a like or a dislike in the storage folder when that folder is writable. The folder is not served by the web server.</p>
+<h3>Result</h3>
+<p>Typing a known name shows a suggestion the agent can turn into an id. One feedback record is written under storage. If the folder is not writable, diagnostica says so and the rest of the app still works.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d15" value="approved"> Approve</label>
+      <label><input type="radio" name="d15" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-16" data-id="16">
+  <header>
+    <div class="kicker"><span class="num">17</span><span class="label" style="--c:#2f7d4a">Delivery</span><span class="state">Done</span></div>
+    <h2>Tool API for an external agent</h2>
+    <p class="when">Mon 16 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Let another agent, for example a Python service, run the same verified queries without going through the chat model.</p>
+<h3>Work</h3>
+<p>api/tool.php lists the tools on GET and runs one on POST. The body is the tool name, the arguments, and an optional capo_area_id. The caller must send Authorization: Bearer with the token from config.php. The endpoint stays closed while tool_api is disabled or the token is shorter than 24 characters.</p>
+<h3>Result</h3>
+<p>A call is rejected while the switch is off. With a long token and the switch on, one tool returns its result. The external agent still cannot write SQL.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d16" value="approved"> Approve</label>
+      <label><input type="radio" name="d16" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-17" data-id="17">
+  <header>
+    <div class="kicker"><span class="num">18</span><span class="label" style="--c:#2f7d4a">Delivery</span><span class="state">Done</span></div>
+    <h2>Diagnostics page and locked sensitive files</h2>
+    <p class="when">Mon 16 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Show an admin what is missing before go-live, and keep private files off the web.</p>
+<h3>Work</h3>
+<p>diagnostica.php is limited to the admin role. It checks the PHP version, the required extensions, the database connection, the row count of each table, a sample sales query, the configured model, the demo passwords and whether storage is writable. .htaccess blocks config.php, the database, and the lib, data, tests and tools folders.</p>
+<h3>Result</h3>
+<p>An admin can open the page. A normal user receives 403. The direct URL of the database file returns 403. The page is the checklist before the Aruba upload.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d17" value="approved"> Approve</label>
+      <label><input type="radio" name="d17" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-18" data-id="18">
+  <header>
+    <div class="kicker"><span class="num">19</span><span class="label" style="--c:#c47b2b">Interface</span><span class="state">Done</span></div>
+    <h2>Theme, layout and visual design</h2>
+    <p class="when">Mon 16 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Give the app the Odiens look, make it usable on a phone, and load no font or chart library from the internet.</p>
+<h3>Work</h3>
+<p>assets/app.css defines the themes as CSS variables on the page: Odiens and the alternatives. Size, density, width, corner radius and motion come from the settings stored in the browser. Inter and Plus Jakarta Sans are shipped as local font files. Chart.js is the local file under assets/vendor. Light and dark logos are in the assets folder.</p>
+<h3>Result</h3>
+<p>Changing the theme changes the colours immediately. On a narrow screen the menu collapses. A reload does not request a font or a chart library from outside the server.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d18" value="approved"> Approve</label>
+      <label><input type="radio" name="d18" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-19" data-id="19">
+  <header>
+    <div class="kicker"><span class="num">20</span><span class="label" style="--c:#2f7d4a">Delivery</span><span class="state">Done</span></div>
+    <h2>Password tool and deployment notes</h2>
+    <p class="when">Mon 16 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Leave a safe way to replace the demo password, and a written path for the person who deploys the site.</p>
+<h3>Work</h3>
+<p>tools/password.php prints a password hash for a new password. The hash is what goes into config.php. The README covers running the site locally, connecting a model, the tool API, and the Aruba steps: a read-only MySQL user, today set to null, demo turned off, the passwords changed, and the data folder left out of the upload. Only Tools.php needs to change for the real table names, and the tests must be run after that.</p>
+<h3>Result</h3>
+<p>The tool prints a fresh hash. The deployment steps can be followed from the README without reading the PHP. The demo passwords are called out as something that must not go live.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d19" value="approved"> Approve</label>
+      <label><input type="radio" name="d19" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+
+<article class="card" id="task-21" data-id="21">
+  <header>
+    <div class="kicker"><span class="num">21</span><span class="label" style="--c:#2f7d4a">Delivery</span><span class="state">Done</span></div>
+    <h2>Handover to Omid for deployment and the model</h2>
+    <p class="when">Tue 17 Nov 2026, 08:00–17:00</p>
+  </header>
+  <div class="prose"><h3>Goal</h3>
+<p>Hand Omid a finished application so he can deploy it and connect the model that will answer questions.</p>
+<h3>Work</h3>
+<p>On 17 November the build was handed over. The queries, the pages, the demo database and the tests were already in place. Deployment and bringing up the model are Omid&#x27;s step. The model is chosen in config.php. No live API key was put in the project. Real company data stays on a model inside the company. The demo file is enough to prove the pages before that.</p>
+<h3>Result</h3>
+<p>Omid has the application. He can deploy it and point it at the model without changing the 13 queries. The handover is the end of this build.</p></div>
+  <fieldset class="review">
+    <legend>Your decision</legend>
+    <div class="choices">
+      <label><input type="radio" name="d21" value="approved"> Approve</label>
+      <label><input type="radio" name="d21" value="changes"> Needs changes</label>
+    </div>
+    <textarea rows="3" placeholder="Comment for the author. Optional if you approve."></textarea>
+  </fieldset>
+</article>
+<footer class="noteblock">
+  <h2>Overall comment</h2>
+  <textarea id="overall" rows="4" placeholder="Anything that applies to the whole build."></textarea>
+  <div class="actions">
+    <button type="button" id="save">Download review</button>
+    <button type="button" class="ghost" id="print">Print or save as PDF</button>
+  </div>
+</footer>
+</div></main>
+<script>
+const KEY = "gos-build-review-v1";
+const cards = [...document.querySelectorAll(".card")];
+const reviewer = document.querySelector("#reviewer");
+const overall = document.querySelector("#overall");
+const progress = document.querySelector("#progress");
+function read() {
+  const decisions = {};
+  for (const card of cards) {
+    const picked = card.querySelector("input:checked");
+    decisions[card.dataset.id] = {
+      decision: picked ? picked.value : "",
+      comment: card.querySelector("textarea").value
+    };
+  }
+  return { reviewer: reviewer.value.trim(), overall: overall.value, decisions, savedAt: new Date().toISOString() };
+}
+function paint() {
+  let n = 0;
+  for (const card of cards) {
+    const picked = card.querySelector("input:checked");
+    card.classList.remove("approved", "changes");
+    if (!picked) continue;
+    n++;
+    card.classList.add(picked.value === "approved" ? "approved" : "changes");
+  }
+  progress.textContent = n + " of " + cards.length + " reviewed";
+}
+function persist() { localStorage.setItem(KEY, JSON.stringify(read())); paint(); }
+function restore() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+  if (!data) { paint(); return; }
+  reviewer.value = data.reviewer || "";
+  overall.value = data.overall || "";
+  for (const card of cards) {
+    const row = (data.decisions || {})[card.dataset.id] || {};
+    if (row.decision) {
+      const input = card.querySelector('input[value="' + row.decision + '"]');
+      if (input) input.checked = true;
+    }
+    card.querySelector("textarea").value = row.comment || "";
+  }
+  paint();
+}
+document.body.addEventListener("change", persist);
+document.body.addEventListener("input", persist);
+document.querySelector("#save").addEventListener("click", () => {
+  const data = read();
+  const titles = {};
+  for (const card of cards) titles[card.dataset.id] = card.querySelector("h2").textContent;
+  data.tasks = Object.keys(data.decisions).map((id) => ({ id: Number(id), title: titles[id], ...data.decisions[id] }));
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  const who = (data.reviewer || "review").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  a.download = "GOS-review-" + who + ".json";
+  a.click();
+});
+document.querySelector("#print").addEventListener("click", () => window.print());
+restore();
+</script>
+</body>
+</html>
